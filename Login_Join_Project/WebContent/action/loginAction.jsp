@@ -64,5 +64,9 @@
 		
 	} catch (Exception e){
 		e.printStackTrace();
+		out.println("<script>");
+		out.println("alert('시스템 오류입니다.')");
+		out.println("history.back()");
+		out.println("</script>");
 	}
 %>
