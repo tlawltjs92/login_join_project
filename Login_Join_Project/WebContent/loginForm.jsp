@@ -26,8 +26,6 @@
 <title>로그인/회원가입</title>
 </head>
 <body>
-	<%String id = (String)session.getAttribute("id"); %>
-	<%=id %>
 	<div class="container">
 		<h1 class="text-center">Login Page</h1>
 
