@@ -25,22 +25,22 @@
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
+			if(rs.next()){
 				if(!rs.getString("password").equals(password)){
 					result = -1;
 				} else{
 					result = 1;
 				}
+			} else{
+				result = -2;
 			}
 		}
-		
 		if(result == -1){
 			out.println("<script>");
 			out.println("alert('비밀번호가 틀립니다.')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else if(result == 1){
-			
 			pstmt = conn.prepareStatement("select * from usertbl where id=?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -60,8 +60,12 @@
 			out.println("alert('로그인이 되었습니다.')");
 			out.println("location.href='../mypage.jsp'");
 			out.println("</script>");
+		} else if(result == -2){
+			out.println("<script>");
+			out.println("alert('없는 아이디입니다.')");
+			out.println("history.back()");
+			out.println("</script>");
 		}
-		
 	} catch (Exception e){
 		e.printStackTrace();
 		out.println("<script>");
